@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
@@ -7,26 +7,8 @@ import "./App.css";
 
 
 function App() {
-    const [todos, setTodos] = useState([
-   {
-    id: 1,
-    text: "Criar funcionalidade x no sistema",
-    category: "Trabalho",
-    isCompleted: false,
-   },
-   {
-    id: 2,
-    text: "Ir para a igreja",
-    category: "Pessoal",
-    isCompleted: false,
-   },
-   {
-    id: 3,
-    text: "Estudar React",
-    category: "Estudos",
-    isCompleted: false,
-   },
-  ]);
+
+  const [todos, setTodos] = useState([]);
 
   const addTodo = (text, category) => {
     const newTodos = [...todos,
@@ -39,6 +21,7 @@ function App() {
     ];
 
     setTodos(newTodos);
+    localStorage.setItem("local", JSON.stringify(newTodos));
   };
 
   const removeTodo = (id) => {
@@ -47,13 +30,29 @@ function App() {
      todo.id !== id ? todo : null
     );
     setTodos(filteredTodos);
+    localStorage.setItem("local", JSON.stringify(filteredTodos));
+
   };
 
  const completeTodo = (id) => {
   const newTodos = [...todos]
   newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo);
   setTodos(newTodos);
+  localStorage.setItem("local", JSON.stringify(newTodos));
+
  };
+
+ useEffect(() => {
+  // Lê os dados do LocalStorage
+  const data = localStorage.getItem("local")
+  
+  // Verifica se os dados existem
+  if (data) {
+    setTodos(JSON.parse(data))
+  } else { 
+    setTodos([ { id: 1, text: "Criar funcionalidade x no sistema", category: "Trabalho", isCompleted: false, }, { id: 2, text: "Ir para a igreja", category: "Pessoal", isCompleted: false, }, { id: 3, text: "Estudar React", category: "Estudos", isCompleted: false, }, ])
+  }
+}, []);
 
   return (
     <div className="app">
