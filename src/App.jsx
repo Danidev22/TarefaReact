@@ -47,10 +47,10 @@ function App() {
   const data = localStorage.getItem("local")
   
   // Verifica se os dados existem
-  if (data) {
+  if (data && data !== '[]') {
     setTodos(JSON.parse(data))
   } else { 
-    setTodos([ { id: 1, text: "Criar funcionalidade x no sistema", category: "Trabalho", isCompleted: false, }, { id: 2, text: "Ir para a igreja", category: "Pessoal", isCompleted: false, }, { id: 3, text: "Estudar React", category: "Estudos", isCompleted: false, }, ])
+    setTodos([ { id: 1, text: "Ir ao mercado", category: "Trabalho", isCompleted: false, }, { id: 2, text: "Ir para a igreja", category: "Pessoal", isCompleted: false, }, { id: 3, text: "Estudar React", category: "Estudos", isCompleted: false, }, ])
   }
 }, []);
 
