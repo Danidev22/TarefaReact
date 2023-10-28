@@ -1,8 +1,8 @@
 body {
   font-family: Arial;
-  background-color: #f4f4f4;
+  background-color: #3daf63;
   padding: 30px;
-  color: #333;
+  color: #0c130b;
   background-image: url("./img/sera.jpg");
   background-position: center;
   background-size: cover;
@@ -10,7 +10,7 @@ body {
 .app {
   max-width: 600px;
   margin: 0 auto 300px;
-  background-color: #efefef;
+  background-color: #e4deee;
   padding: 20px 30px;
   border-radius: 15px;
 }
